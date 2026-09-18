@@ -1,0 +1,18 @@
+{
+  "name": "aria-ai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Aria AI — autonomous operating system for solo real estate agents",
+  "packageManager": "pnpm@11.11.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @aria/web --filter @aria/mobile dev",
+    "dev:web": "pnpm --filter @aria/web dev",
+    "dev:mobile": "pnpm --filter @aria/mobile start",
+    "build": "pnpm --filter @aria/web build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "supabase:start": "supabase start",
+    "supabase:reset": "supabase db reset",
+    "supabase:types": "supabase gen types typescript --local > packages/shared/src/database.types.ts"
+  }
+}

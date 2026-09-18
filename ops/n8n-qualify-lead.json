@@ -1,0 +1,24 @@
+{
+  "name": "Aria qualify lead",
+  "nodes": [
+    {
+      "name": "Lead inserted",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": { "httpMethod": "POST", "path": "aria-qualify-lead" }
+    },
+    {
+      "name": "Qualify via Aria",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ARIA_APP_URL}}/api/ai/qualify",
+        "authentication": "genericCredentialType",
+        "jsonBody": "{ \"leadId\": \"{{$json.leadId}}\" }"
+      }
+    }
+  ],
+  "connections": {
+    "Lead inserted": { "main": [[{ "node": "Qualify via Aria", "type": "main", "index": 0 }]] }
+  },
+  "notes": "Point N8N_WEBHOOK_URL at this webhook. Use CRON_SECRET as the Bearer token."
+}
